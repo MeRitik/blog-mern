@@ -3,3 +3,6 @@ apps/server/node_modules/
 apps/client/node_modules/
 
 .env
+.gitignore
+
+apps/client/src/assets/
