@@ -27,7 +27,7 @@ function Heading() {
                 <input
                     type="text"
                     placeholder='Search...'
-                    className='bg-input border border-border text-foreground placeholder:text-muted-foreground px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-all'
+                    className='border border-popover text-foreground placeholder:text-muted-foreground px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-all'
                 />
 
                 {/* Auth Buttons */}
