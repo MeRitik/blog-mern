@@ -2,7 +2,7 @@ import BlogCard from './components/BlogCard.jsx';
 import Heading from './components/Heading.jsx';
 
 // Constants
-const HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1764377723685-31e60ed8e550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D';
+// const HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1764377723685-31e60ed8e550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D';
 
 const CONTENT_DATA = {
   badge: 'Destination',
@@ -108,17 +108,19 @@ function BlogSection() {
     </div>
   );
 }
+
+import background from './assets/image/bg.jpg'
 // Main App Component
 export default function App() {
   const heroStyle = {
-    backgroundImage: `url(${HERO_IMAGE_URL})`
+    backgroundImage: `url(${background})`
   };
 
   return (
     <>
       {/* Hero Section */}
       <div
-        className="h-[70vh] bg-cover bg-center bg-fixed"
+        className="h-[80vh] bg-cover bg-center bg-fixed"
         style={heroStyle}
         role="img"
         aria-label="Hero background image"
@@ -126,7 +128,7 @@ export default function App() {
         <div className="px-4">
           <Heading />
 
-          <main className="px-6 py-20 pt-[30vh]">
+          <main className="px-6 py-20 pt-[40vh]">
             <Badge text={CONTENT_DATA.badge} />
 
             <div className="flex flex-row max-w-full justify-between items-start gap-8">
