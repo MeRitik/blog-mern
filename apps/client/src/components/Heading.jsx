@@ -1,15 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 function Heading() {
     const { isDark, toggleTheme } = useTheme();
+    const navigate = useNavigate();
 
     return (
         <header>
             <div className='flex px-10 py-4 space-x-8 items-center justify-between'>
                 {/* Logo */}
-                <span className='text-primary font-bold text-4xl font-sans flex items-center'>
+                <button className='text-primary font-bold text-4xl font-sans flex items-center cursor-pointer' onClick={() => navigate('/')}>
                     TravelBuddy
-                </span>
+                </button>
 
                 {/* Navigation */}
                 <nav>

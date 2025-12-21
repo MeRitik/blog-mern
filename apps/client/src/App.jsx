@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogCard from './components/BlogCard.jsx';
 import Heading from './components/Heading.jsx';
 import Footer from './components/Footer.jsx';
-import BlogDetail from './components/BlogDetail.jsx';
+import BlogDetail from './pages/BlogDetail.jsx'
 
 // Constants
 // const HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1764377723685-31e60ed8e550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D';
@@ -78,7 +78,7 @@ function BlogSection() {
           <label htmlFor="sort-select" className="text-sm font-medium">Sort By</label>
           <select
             id="sort-select"
-            className="bg-primary text-foreground px-3 py-1.5 rounded-md focus:outline-none text-sm"
+            className="bg-primary text-foreground px-3 py-1.5 focus:outline-none text-sm "
           >
             <option>Latest</option>
             <option>Oldest</option>

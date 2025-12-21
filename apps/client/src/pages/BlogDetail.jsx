@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import Heading from './Heading';
-import Footer from './Footer';
+import Heading from '../components/Heading';
+import Footer from '../components/Footer';
 
 const BlogDetail = () => {
     const { id } = useParams();

@@ -16,7 +16,7 @@ export default function Footer() {
                         <div className="flex gap-3">
                             <a
                                 href="#"
-                                className="w-10 h-10 bg-accent border-2 border-border flex items-center justify-center hover:bg-accent/80 transition-colors"
+                                className="w-10 h-10 bg-blue-500 border-2 border-border flex items-center justify-center hover:bg-blue-500/80 transition-colors"
                                 style={{ boxShadow: '3px 3px 0px 0px var(--shadow-color)' }}
                                 aria-label="Twitter"
                             >
@@ -26,7 +26,7 @@ export default function Footer() {
                             </a>
                             <a
                                 href="#"
-                                className="w-10 h-10 bg-accent border-2 border-border flex items-center justify-center hover:bg-accent/80 transition-colors"
+                                className="w-10 h-10 bg-blue-600 border-2 border-border flex items-center justify-center hover:bg-blue-600/80 transition-colors"
                                 style={{ boxShadow: '3px 3px 0px 0px var(--shadow-color)' }}
                                 aria-label="LinkedIn"
                             >
@@ -36,7 +36,7 @@ export default function Footer() {
                             </a>
                             <a
                                 href="#"
-                                className="w-10 h-10 bg-gray-300 border-2 border-border flex items-center justify-center hover:bg-gray-300/80 transition-colors"
+                                className="w-10 h-10 bg-gray-800 border-2 border-border flex items-center justify-center hover:bg-gray-800/80 transition-colors"
                                 style={{ boxShadow: '3px 3px 0px 0px var(--shadow-color)' }}
                                 aria-label="GitHub"
                             >
