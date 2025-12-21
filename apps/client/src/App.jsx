@@ -1,5 +1,8 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BlogCard from './components/BlogCard.jsx';
 import Heading from './components/Heading.jsx';
+import Footer from './components/Footer.jsx';
+import BlogDetail from './components/BlogDetail.jsx';
 
 // Constants
 // const HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1764377723685-31e60ed8e550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D';
@@ -19,7 +22,7 @@ const CONTENT_DATA = {
 // Component: Badge
 function Badge({ text }) {
   return (
-    <div className="px-2 py-1 w-fit rounded-lg bg-card/90 text-foreground mb-6 text-sm">
+    <div className="px-2 py-1 w-fit rounded-lg bg-secondary/30 text-foreground mb-2 text-sm">
       {text}
     </div>
   );
@@ -28,11 +31,11 @@ function Badge({ text }) {
 // Component: Hero Content
 function HeroContent() {
   return (
-    <div>
+    <div className='text-shadow-xs text-shadow-background'>
       <h1 className="text-foreground text-5xl font-bold mb-2">
         {CONTENT_DATA.title}
       </h1>
-      <p className="text-foreground text-sm max-w-xl">
+      <p className="text-foreground text-md max-w-xl">
         {CONTENT_DATA.description}
       </p>
     </div>
@@ -110,10 +113,11 @@ function BlogSection() {
 }
 
 import background from './assets/image/bg.jpg'
-// Main App Component
-export default function App() {
+
+// Home Page Component
+function HomePage() {
   const heroStyle = {
-    backgroundImage: `url(${background})`
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${background})`,
   };
 
   return (
@@ -140,11 +144,26 @@ export default function App() {
       </div>
 
       {/* Blog Section - Separate container with gap */}
-      <div className="bg-background px-4 py-16">
+      <div className="bg-background px-4 py-16 border-t-4 border-border">
         <div className="px-6">
           <BlogSection />
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </>
+  );
+}
+
+// Main App Component
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+      </Routes>
+    </Router>
   );
 }
