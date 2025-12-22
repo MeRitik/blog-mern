@@ -43,12 +43,18 @@ function Heading() {
                     </button>
 
                     {/* Login */}
-                    <button className='text-foreground hover:text-primary transition-colors font-medium'>
+                    <button
+                        onClick={() => navigate('/login')}
+                        className='text-foreground hover:text-primary transition-colors font-medium'
+                    >
                         Login
                     </button>
 
                     {/* Sign Up */}
-                    <button className='bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium hover:opacity-90 transition-opacity shadow-sm'>
+                    <button
+                        onClick={() => navigate('/signup')}
+                        className='bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium hover:opacity-90 transition-opacity shadow-sm'
+                    >
                         Sign Up
                     </button>
                 </div>
