@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
 
@@ -56,4 +56,10 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-export default AuthContext;
+export function useAuth() {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+    return context;
+}
