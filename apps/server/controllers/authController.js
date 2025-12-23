@@ -1,5 +1,5 @@
-import User from "../models/User";
-import { generateToken } from "../utills/jwt";
+import User from "../models/User.js";
+import { generateToken } from "../utills/jwt.js";
 
 /*==============================
     Signup
