@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const { isDark } = useTheme();
@@ -12,6 +13,7 @@ const Login = () => {
         password: ''
     });
     const [rememberMe, setRememberMe] = useState(false);
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         setFormData({
@@ -22,8 +24,10 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add authentication logic here
-        console.log('Login attempt:', formData);
+        const { email, password } = formData;
+        login(email, password).then(() => {
+            navigate('/');
+        });
     };
 
     return (

@@ -3,9 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
     const { isDark } = useTheme();
+    const { signup } = useAuth();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
@@ -36,8 +38,13 @@ const Signup = () => {
             return;
         }
 
-        // Add registration logic here
-        console.log('Signup attempt:', formData);
+        signup(formData.fullName, formData.email, formData.password)
+            .then(() => {
+                navigate('/dashboard');
+            })
+            .catch((err) => {
+                alert('Signup failed: ' + err.message);
+            });
     };
 
     return (

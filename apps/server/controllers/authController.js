@@ -5,6 +5,7 @@ import { generateToken } from "../utills/jwt.js";
     Signup
 ===============================*/
 export const signup = async (req, res) => {
+    console.log("Signup request received:", req.body);
     try {
         const { username, email, password } = req.body;
 
@@ -40,6 +41,7 @@ export const signup = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("Error during signup:", error);
         res
         .status(500)
         .json({ message: 'Signup failed', error: error.message });
