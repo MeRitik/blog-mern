@@ -40,7 +40,7 @@ const Signup = () => {
 
         signup(formData.fullName, formData.email, formData.password)
             .then(() => {
-                navigate('/dashboard');
+                navigate('/');
             })
             .catch((err) => {
                 alert('Signup failed: ' + err.message);

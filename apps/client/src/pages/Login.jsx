@@ -13,7 +13,7 @@ const Login = () => {
         password: ''
     });
     const [rememberMe, setRememberMe] = useState(false);
-    const { login } = useAuth();
+    const { login, user } = useAuth();
 
     const handleChange = (e) => {
         setFormData({
@@ -26,7 +26,7 @@ const Login = () => {
         e.preventDefault();
         const { email, password } = formData;
         login(email, password).then(() => {
-            navigate('/');
+            navigate(`/profile/${user.username}`);
         });
     };
 

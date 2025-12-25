@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
+import UserInfo from './UserInfo.jsx';
 
 function Heading() {
+    const { isAuthenticated, logout } = useAuth();
     const { isDark, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
@@ -43,20 +46,33 @@ function Heading() {
                     </button>
 
                     {/* Login */}
-                    <button
+                    {!isAuthenticated && <button
                         onClick={() => navigate('/login')}
                         className='text-foreground hover:text-primary transition-colors font-medium'
                     >
                         Login
                     </button>
+                    }
+                    {!isAuthenticated
+                        &&
+                        <button
+                            onClick={() => navigate('/signup')}
+                            className='bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium hover:opacity-90 transition-opacity shadow-sm'
+                        >
+                            Sign Up
+                        </button>
+                    }
 
-                    {/* Sign Up */}
-                    <button
-                        onClick={() => navigate('/signup')}
-                        className='bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium hover:opacity-90 transition-opacity shadow-sm'
-                    >
-                        Sign Up
-                    </button>
+                    {isAuthenticated && <UserInfo />}
+                    {isAuthenticated &&
+                        <button
+                            onClick={logout}
+                            className='bg-primary text-primary-foreground rounded-md px-4 py-2 font-medium hover:opacity-90 transition-opacity shadow-sm'
+                        >
+                            Logout
+                        </button>
+                    }
+
                 </div>
             </div>
         </header>
