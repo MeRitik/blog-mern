@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BlogCard from '../components/BlogCard';
 import Footer from '../components/Footer';
 import Heading from '../components/Heading';
 
 export default function Profile() {
+    const navigate = useNavigate();
     // Hardcoded user data
     const [user] = useState({
         id: '1',
@@ -107,40 +109,61 @@ export default function Profile() {
             {/* Minimal Profile Header */}
             <div className="bg-card border-b max-w-7xl mx-auto border-border">
                 <div className="max-w-7xl mx-auto px-6 py-12">
-                    <div className="flex items-center gap-6">
-                        {/* Avatar */}
-                        {user.avatar ? (
-                            <img
-                                src={user.avatar}
-                                alt={user.username}
-                                className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg"
-                            />
-                        ) : (
-                            <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center border-4 border-primary shadow-lg">
-                                <span className="text-primary-foreground text-3xl font-bold">
-                                    {user.username.charAt(0).toUpperCase()}
-                                </span>
-                            </div>
-                        )}
-
-                        {/* Basic Info */}
-                        <div>
-                            <div className="flex items-center gap-3 mb-2">
-                                <h1 className="text-3xl font-bold text-foreground font-sans">
-                                    {user.username}
-                                </h1>
-                                {user.isVerified && (
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-                                        ✓ Verified
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-6">
+                            {/* Avatar */}
+                            {user.avatar ? (
+                                <img
+                                    src={user.avatar}
+                                    alt={user.username}
+                                    className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg"
+                                />
+                            ) : (
+                                <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center border-4 border-primary shadow-lg">
+                                    <span className="text-primary-foreground text-3xl font-bold">
+                                        {user.username.charAt(0).toUpperCase()}
                                     </span>
+                                </div>
+                            )}
+
+                            {/* Basic Info */}
+                            <div>
+                                <div className="flex items-center gap-3 mb-2">
+                                    <h1 className="text-3xl font-bold text-foreground font-sans">
+                                        {user.username}
+                                    </h1>
+                                    {user.isVerified && (
+                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                                            ✓ Verified
+                                        </span>
+                                    )}
+                                </div>
+                                {user.bio && (
+                                    <p className="text-muted-foreground max-w-2xl">
+                                        {user.bio}
+                                    </p>
                                 )}
                             </div>
-                            {user.bio && (
-                                <p className="text-muted-foreground max-w-2xl">
-                                    {user.bio}
-                                </p>
-                            )}
                         </div>
+
+                        {/* Animated Create Post Button */}
+                        <button
+                            onClick={() => navigate('/new-post')}
+                            className="group relative px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:ring-4 hover:ring-primary/30"
+                        >
+                            <span className="relative z-10 flex items-center gap-2">
+                                <svg
+                                    className="w-5 h-5 transition-transform group-hover:rotate-90 duration-300"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                </svg>
+                                Create Post
+                            </span>
+                            <div className="absolute inset-0 bg-accent transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-full"></div>
+                        </button>
                     </div>
                 </div>
             </div>

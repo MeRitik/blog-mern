@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Profile from './pages/Profile.jsx';
+import NewPost from './pages/NewPost.jsx';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile/:username?" element={<Profile />} />
+        <Route path="/new-post" element={<NewPost />} />
       </Routes>
     </Router>
   );

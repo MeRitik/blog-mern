@@ -166,6 +166,21 @@ export const PostProvider = ({ children }) => {
         }
     }, []);
 
+    // Generate post with AI
+    const generatePostWithAI = useCallback(async (title, content) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const { data } = await api.post('/posts/generate', { title, content });
+            return data;
+        } catch (err) {
+            setError(err.response?.data?.message || err.message);
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
     return (
         <PostContext.Provider value={{
             loading,
@@ -178,7 +193,8 @@ export const PostProvider = ({ children }) => {
             deletePost,
             getUserProfile,
             getUserPosts,
-            incrementViews
+            incrementViews,
+            generatePostWithAI
         }}>
             {children}
         </PostContext.Provider>
