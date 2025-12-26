@@ -3,6 +3,7 @@ import BlogDetail from './pages/BlogDetail.jsx'
 import HomePage from './pages/HomePage.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
+import Profile from './pages/Profile.jsx';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/profile/:username?" element={<Profile />} />
       </Routes>
     </Router>
   );

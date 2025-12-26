@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function UserInfo() {
@@ -9,7 +10,7 @@ function UserInfo() {
                 alt="User Avatar"
                 className="w-10 h-10 rounded-full"
             />
-            <span className="text-foreground font-medium">{user?.username.split(' ').at(0)}</span>
+            <Link to={`/profile/${user?.username}`} className="text-foreground font-medium">{user?.username.split(' ').at(0)}</Link>
         </div>
     )
 }
