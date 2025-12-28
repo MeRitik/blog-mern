@@ -13,7 +13,7 @@ export default function NewPost() {
         description: '',
         tags: [],
         status: 'draft',
-        content: [{ contentType: 'paragraph', content: '', order: 0 }]
+        content: [{ contentType: 'heading', content: '', order: 0 }]
     });
 
     const [useAI, setUseAI] = useState(false);

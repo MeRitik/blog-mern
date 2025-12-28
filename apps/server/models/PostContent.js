@@ -27,4 +27,4 @@ const PostContent = new mongoose.Schema(
   { _id: false }
 );
 
-export default mongoose.model("ContentBlock", ContentBlock);
+export default mongoose.model("PostContent", PostContent);
