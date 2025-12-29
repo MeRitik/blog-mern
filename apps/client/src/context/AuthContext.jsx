@@ -6,6 +6,7 @@ import {
     useEffect,
     useState
 } from "react";
+import { toast } from 'react-toastify';
 
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
 
@@ -51,6 +52,12 @@ export const AuthProvider = ({ children }) => {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
+
+            toast.success(`Welcome back, ${data.user.username || data.user.name}! 👋`);
+        } catch (err) {
+            const errorMessage = err.response?.data?.message || err.message || 'Login failed';
+            toast.error(errorMessage);
+            throw err;
         } finally {
             setLoading(false);
         }
@@ -70,6 +77,12 @@ export const AuthProvider = ({ children }) => {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
+
+            toast.success(`Account created successfully! Welcome, ${username}! 🎉`);
+        } catch (err) {
+            const errorMessage = err.response?.data?.message || err.message || 'Signup failed';
+            toast.error(errorMessage);
+            throw err;
         } finally {
             setLoading(false);
         }
@@ -81,6 +94,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         delete api.defaults.headers.common.Authorization;
+        toast.success('Logged out successfully! 👋');
     }, []);
 
     return (

@@ -5,6 +5,7 @@ import {
     useContext,
     useState
 } from "react";
+import { toast } from 'react-toastify';
 
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
 
@@ -86,9 +87,12 @@ export const PostProvider = ({ children }) => {
         setError(null);
         try {
             const { data } = await api.post('/posts', postData);
+            toast.success('Post created successfully! 🎉');
             return data;
         } catch (err) {
-            setError(err.response?.data?.message || err.message);
+            const errorMessage = err.response?.data?.message || err.message || 'Failed to create post';
+            setError(errorMessage);
+            toast.error(errorMessage);
             throw err;
         } finally {
             setLoading(false);
@@ -101,9 +105,12 @@ export const PostProvider = ({ children }) => {
         setError(null);
         try {
             const { data } = await api.put(`/posts/${id}`, postData);
+            toast.success('Post updated successfully! ✨');
             return data;
         } catch (err) {
-            setError(err.response?.data?.message || err.message);
+            const errorMessage = err.response?.data?.message || err.message || 'Failed to update post';
+            setError(errorMessage);
+            toast.error(errorMessage);
             throw err;
         } finally {
             setLoading(false);
@@ -116,9 +123,12 @@ export const PostProvider = ({ children }) => {
         setError(null);
         try {
             const { data } = await api.delete(`/posts/${id}`);
+            toast.success('Post deleted successfully! 🗑️');
             return data;
         } catch (err) {
-            setError(err.response?.data?.message || err.message);
+            const errorMessage = err.response?.data?.message || err.message || 'Failed to delete post';
+            setError(errorMessage);
+            toast.error(errorMessage);
             throw err;
         } finally {
             setLoading(false);
@@ -172,9 +182,12 @@ export const PostProvider = ({ children }) => {
         setError(null);
         try {
             const { data } = await api.post('/posts/generate', { title, content });
+            toast.success('AI content generated successfully! 🤖');
             return data;
         } catch (err) {
-            setError(err.response?.data?.message || err.message);
+            const errorMessage = err.response?.data?.message || err.message || 'Failed to generate AI content';
+            setError(errorMessage);
+            toast.error(errorMessage);
             throw err;
         } finally {
             setLoading(false);
