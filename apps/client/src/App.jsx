@@ -5,6 +5,7 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Profile from './pages/Profile.jsx';
 import NewPost from './pages/NewPost.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 export default function App() {
   return (
@@ -16,6 +17,8 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile/:username?" element={<Profile />} />
         <Route path="/new-post" element={<NewPost />} />
+        <Route path="/error" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
