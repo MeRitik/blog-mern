@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectToDatabase from "./config/database.js";
 import authRoutes from "./routes/auth.routes.js";
 import postRoutes from "./routes/post.routes.js";
+import newsletterRoutes from "./routes/newsletter.routes.js";
 import cors from "cors";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/api/auth", authRoutes)
 app.use("/api", postRoutes)
+app.use("/api", newsletterRoutes)
 
 app.get("/api/health", (req, res) => {
     res.json({ status: "OK" })

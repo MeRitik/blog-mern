@@ -1,5 +1,42 @@
+import { useState } from 'react';
+import axios from 'axios';
+
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState({ text: '', type: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+
+        if (!email) {
+            setMessage({ text: 'Please enter your email address', type: 'error' });
+            return;
+        }
+
+        setIsSubmitting(true);
+        setMessage({ text: '', type: '' });
+
+        try {
+            const { data } = await axios.post('http://localhost:8080/api/subscribe', {
+                email
+            });
+
+            if (data.success) {
+                setMessage({ text: data.message, type: 'success' });
+                setEmail('');
+            } else {
+                setMessage({ text: data.message, type: 'error' });
+            }
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || 'Failed to subscribe. Please try again later.';
+            setMessage({ text: errorMessage, type: 'error' });
+            console.error('Subscription error:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <footer className="bg-background border-t-4 border-border">
@@ -97,20 +134,29 @@ export default function Footer() {
                         <p className="text-foreground/80 text-sm mb-4">
                             Subscribe to get the latest articles and updates.
                         </p>
-                        <form className="space-y-3">
+                        <form onSubmit={handleSubscribe} className="space-y-3">
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="w-full px-4 py-2 border-2 border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-2 border-2 border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 style={{ boxShadow: '3px 3px 0px 0px var(--shadow-color)' }}
                             />
                             <button
                                 type="submit"
-                                className="w-full px-4 py-2 bg-primary text-primary-foreground border-2 border-border font-medium hover:bg-primary/80 transition-colors"
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-2 bg-primary text-primary-foreground border-2 border-border font-medium hover:bg-primary/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 style={{ boxShadow: '3px 3px 0px 0px var(--shadow-color)' }}
                             >
-                                Subscribe
+                                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                             </button>
+                            {message.text && (
+                                <p className={`text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                                    {message.text}
+                                </p>
+                            )}
                         </form>
                     </div>
                 </div>
