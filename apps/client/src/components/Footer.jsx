@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
     const [email, setEmail] = useState('');
-    const [message, setMessage] = useState({ text: '', type: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
 
         if (!email) {
-            setMessage({ text: 'Please enter your email address', type: 'error' });
+            toast.error('Please enter your email address');
             return;
         }
 
         setIsSubmitting(true);
-        setMessage({ text: '', type: '' });
 
         try {
             const { data } = await axios.post('http://localhost:8080/api/subscribe', {
@@ -24,14 +23,14 @@ export default function Footer() {
             });
 
             if (data.success) {
-                setMessage({ text: data.message, type: 'success' });
+                toast.success(data.message);
                 setEmail('');
             } else {
-                setMessage({ text: data.message, type: 'error' });
+                toast.error(data.message);
             }
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Failed to subscribe. Please try again later.';
-            setMessage({ text: errorMessage, type: 'error' });
+            toast.error(errorMessage);
             console.error('Subscription error:', error);
         } finally {
             setIsSubmitting(false);
@@ -152,11 +151,6 @@ export default function Footer() {
                             >
                                 {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                             </button>
-                            {message.text && (
-                                <p className={`text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
-                                    {message.text}
-                                </p>
-                            )}
                         </form>
                     </div>
                 </div>
